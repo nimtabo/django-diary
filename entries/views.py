@@ -25,5 +25,22 @@ def post_new(request):
       return redirect('entry_detail', pk=entry.pk)
   else:
     form = EntryForm()
-    return render(request, 'entries/post_edit.html', {'form': form})
+  return render(request, 'entries/post_edit.html', {'form': form})
+
+def post_edit(request, pk):
+  entry = get_object_or_404(Entry, pk=pk)
+  if request.method == "POST":
+    form = EntryForm(request.POST, instance=entry)
+    if form.is_valid():
+      entry = form.save(commit=False)
+      entry.author = request.user
+      entry.save()
+      return redirect('entry_detail', pk=entry.pk)
+  else:
+    form = EntryForm(instance=entry)
+  return render(request, 'entries/post_edit.html', {'form': form})
+
+
+
+
 

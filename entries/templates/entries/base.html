@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>entries</title>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="{% static 'entries/style.css' %}">
+</head>
+
+<body>
+  <div class="page-header">
+    <h1><a href="/entries">DDiary</a></h1>
+    <a href="{% url 'post_new' %}" class="top-menu">New entry</a>
+  </div>
+
+  <div class="content container">
+    <div class="col-md-8">
+    {% block content %}
+    {% endblock %}
+    </div>
+  </div>
+</body>
+
+</html>

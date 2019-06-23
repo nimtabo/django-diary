@@ -1,0 +1,14 @@
+{% extends 'entries/base.html' %}
+
+{% block content %}
+  <div class="post">
+    <h2>{{ entry.title }}</h2>
+    <p>{{ entry.text | linebreaksbr }}</p>
+
+    {% if entry.created_date %}
+    <div class="date">
+        published: {{ entry.created_date }}
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

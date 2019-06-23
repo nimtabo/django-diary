@@ -1,20 +1,14 @@
-<html>
+{% extends 'entries/base.html' %}
 
-<head>
-  <title>entries</title>
-</head>
-
-<body>
-  <div>
-    <h1><a href="/">Diary Home</a></h1>
-  </div>
-  
+{% block content %}
   {% for entry in entries %}
-    <div>
-      <h2><a href="">{{ entry.title }}</a></h2>
-      <p>{{ entry.text | linebreaksbr }}</p>
-      <p>date: {{ entry.created_date }}</p>
-    </div>
-  {% endfor %}
+  <div class="post">
+    <h2><a href="{% url 'entry_detail' pk=entry.pk %}">{{ entry.title }}</a></h2>
+    <p>{{ entry.text | linebreaksbr }}</p>
 
-</body
+    <div class="date">
+      published: {{ entry.created_date }}
+    </div>
+  </div>
+  {% endfor %}
+{% endblock%}

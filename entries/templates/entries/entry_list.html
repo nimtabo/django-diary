@@ -1,0 +1,20 @@
+<html>
+
+<head>
+  <title>entries</title>
+</head>
+
+<body>
+  <div>
+    <h1><a href="/">Diary Home</a></h1>
+  </div>
+  
+  {% for entry in entries %}
+    <div>
+      <h2><a href="">{{ entry.title }}</a></h2>
+      <p>{{ entry.text | linebreaksbr }}</p>
+      <p>date: {{ entry.created_date }}</p>
+    </div>
+  {% endfor %}
+
+</body

@@ -11,26 +11,54 @@
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="{% static 'entries/style.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'base.css' %}"> -->
 </head>
 
 <body>
-  <div class="page-header">
-    <h1><a href="/entries">DDiary</a></h1>
+  <div  class="page-header"> <!--style="position: fixed" -->
+    <h1><a href="/">DDiary</a></h1>
+    <h1><a href="/">Dashboard</a></h1>
 
     {% if user.is_authenticated %}
+      <p class="top-menu">Hi {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
       <a href="{% url 'post_new' %}" class="top-menu">New entry</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="top-menu">login</a>
+      <a href="{% url 'signup' %}" class="top-menu">signup</a>
     {% endif %}
   </div>
 
   <div class="content container">
-    <div class="col-md-8">
+    <div class="col-sm-12">
       {% block content %}
       {% endblock %}
     </div>
   </div>
+
+  <footer style="background-color: blue"">
+    <div class="class="container">
+      <p>Made with love</p>
+      <p>Made with love</p>
+      <p>Social media</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
 </body>
 
 </html>

@@ -5,7 +5,6 @@
   <div class="post">
     <h2><a href="{% url 'entry_detail' pk=entry.pk %}">{{ entry.title }}</a></h2>
     <p>{{ entry.text | linebreaksbr }}</p>
-
     <div class="date">
       published: {{ entry.created_date }}
     </div>

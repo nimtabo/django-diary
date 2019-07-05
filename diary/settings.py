@@ -23,10 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4q$7*l#oclr3ode0bk5l5**=axyy$aw*#p=iy$qkq=eja^p7dg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*'
+    'localhost',
+    '127.0.0.1',
 ]
 
 
@@ -77,14 +78,21 @@ WSGI_APPLICATION = 'diary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'django_diary',
+#         'USER': 'mtabo',
+#         'PASSWORD': '3s2014jum',
+#         'HOST': '*',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_diary',
-        'USER': 'mtabo',
-        'PASSWORD': '3s2014jum',
-        'HOST': '*',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -126,7 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static'),
+    'var/www/static',
+]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Login users and redirecting to home

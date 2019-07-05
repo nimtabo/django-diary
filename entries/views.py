@@ -20,6 +20,7 @@ def entry_detail(request, pk):
 
 @login_required
 def post_new(request):
+	#'csrfmiddlewaretoken':"{{ csrf_token }}"
   if request.method == "POST":
     form = EntryForm(request.POST)
     if form.is_valid():

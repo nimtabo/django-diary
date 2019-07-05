@@ -1,13 +1,39 @@
 {% extends 'entries/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
+  {% if entries %}
   {% for entry in entries %}
-  <div class="post">
-    <h2><a href="{% url 'entry_detail' pk=entry.pk %}">{{ entry.title }}</a></h2>
-    <p>{{ entry.text | linebreaksbr }}</p>
-    <div class="date">
-      published: {{ entry.created_date }}
-    </div>
-  </div>
-  {% endfor %}
+		<div class="card" style="margin-top: .1em; background-color: rgba(72, 32, 182, 0.6);">
+			<div class="card-header">
+				<span>
+					<a href="{% url 'entry_detail' pk=entry.pk %}">{{ entry.title }}</a>
+				</span>
+			</div>
+			<div class="card-body">
+				<p>{{ entry.text | linebreaksbr }}</p>
+		  	<p class="date"><small class="text-muted">
+		    published: {{ entry.created_date }}
+		    </small>
+		  </p>
+		</div>
+		</div>
+		{% endfor %}
+		
+		{% else %}
+			<div class="jumbotron" style="margin-top: 4em; position: relative; background-color: rgba(72, 32, 182, 0.5); text-align: center;">
+				<h1 class="my-4">You have not created any entry</h1>
+		  	<a class="btn btn-primary btn-lg" role="button" href="{% url 'post_new' %}"
+		  		style=" margin-top: 1em;"
+		  	>create new</a>
+			</div>
+		{% endif %}
+
+		{% else %}
+		<div class="jumbotron jumbotron" style="margin-top: 2em; position: relative; background-color:transparent !important;">
+			<h2 class="my-4" >keep a private life</h2>
+			<h3 class="lead">register to start</h3>
+			<a href="{% url 'signup' %}" class="btn btn-primary btn-lg" role="button">register</a>
+		</div>
+{% endif %}
 {% endblock%}
